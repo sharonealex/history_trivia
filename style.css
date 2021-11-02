@@ -87,7 +87,4 @@ body {
     right: 10px;
   }
  
-  .border {
-      box-sizing: border-box;
-      border: 2px solid red;
-  }
+ 

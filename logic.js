@@ -13,7 +13,6 @@ var time = questions.length * 15;
 var timerId;
 
 function endQuiz(){
-  
     clearInterval(timerId);
     var endScreen = document.querySelector("#end-screen");
     endScreen.removeAttribute("class");
@@ -66,6 +65,20 @@ function getQuestion(){
 
 }
 
+function saveHighscore(){
+    var initials = initialsEl.value.trim();
+    if(initials != ""){
+        var highscores = JSON.parse(window.localStorage.getItem("highScores")) || [];
+        var newScore = {
+            score: time,
+            initials: initials
+        }
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores))
+        window.location.href = "highscores.html"
+    }
+}
+
 function startQuiz() {
     // hide start screen
     var startScreenEl = document.getElementById("start-screen");
@@ -96,3 +109,4 @@ function clockTick() {
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
 
+submitBtn.onclick = saveHighscore;
